@@ -38,6 +38,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox prefHeight="428.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gladic.data2qrcode.Controller">
@@ -46,13 +49,28 @@
          <children>
             <TextField fx:id="textfielddata" layoutX="82.0" layoutY="336.0" prefHeight="24.0" prefWidth="695.0" />
             <Label alignment="CENTER" layoutY="330.0" prefHeight="36.0" prefWidth="80.0" text="Data" textAlignment="JUSTIFY" />
-            <Button fx:id="qrcodegen" layoutX="11.0" layoutY="370.0" mnemonicParsing="false" onAction="#HandleConvertAction" prefHeight="44.0" prefWidth="380.0" text="Convert" />
-            <Button fx:id="qrcodesave" layoutX="395.0" layoutY="370.0" mnemonicParsing="false" onAction="#HandleSaveAction" prefHeight="44.0" prefWidth="380.0" text="Save" />
             <BorderPane layoutX="11.0" layoutY="4.0" prefHeight="325.0" prefWidth="768.0">
                <center>
                   <ImageView fx:id="userqrcode" fitHeight="281.0" fitWidth="377.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
+            <GridPane layoutX="28.0" layoutY="371.0" prefHeight="44.0" prefWidth="753.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="63.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="23.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="qrcodesave" mnemonicParsing="false" onAction="#HandleSaveAction" prefHeight="44.0" prefWidth="293.0" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="qrcodegen" mnemonicParsing="false" onAction="#HandleConvertAction" prefHeight="44.0" prefWidth="376.0" text="Convert" GridPane.rowIndex="1" />
+                  <Button mnemonicParsing="false" onAction="#HandleRandomAction" prefHeight="92.0" prefWidth="344.0" text="Random" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
          </children>
     </AnchorPane>
   </children>

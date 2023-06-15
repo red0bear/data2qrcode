@@ -30,6 +30,11 @@ public class simpleqrcode {
     private ByteArrayInputStream pngInputStream;
     private String namevalue;
     
+    public String generaterandom(int lenght)
+    {
+        return java.util.UUID.randomUUID().toString();
+    }
+       
     public Image get_qr_code(String value)
     {     
         namevalue = value;

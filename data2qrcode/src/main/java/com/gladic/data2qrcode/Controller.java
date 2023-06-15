@@ -26,6 +26,16 @@ public class Controller implements Initializable{
     private Button qrcodesave;
     
     @FXML
+    private void HandleRandomAction(ActionEvent event)
+    {
+         classqrcode = new simpleqrcode();
+         String result = classqrcode.generaterandom(0);
+         userqrcode.setPreserveRatio(true);
+         userqrcode.setImage(classqrcode.get_qr_code(result));
+         textfielddata.setText(result);
+    }
+    
+    @FXML
     private void HandleConvertAction(ActionEvent event){
         
         classqrcode = new simpleqrcode();
