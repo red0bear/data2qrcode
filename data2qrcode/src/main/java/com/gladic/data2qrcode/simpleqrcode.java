@@ -15,7 +15,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.nio.charset.Charset;
 import java.util.Base64;
+import java.util.Random;
 import javafx.scene.image.Image;
 import javax.imageio.ImageIO;
 
@@ -30,9 +32,33 @@ public class simpleqrcode {
     private ByteArrayInputStream pngInputStream;
     private String namevalue;
     
-    public String generaterandom(int lenght)
+    public String generaterandom(int lenght,String type)
     {
-        return java.util.UUID.randomUUID().toString();
+                     
+        int leftLimit = 48; // numeral '0'
+        int rightLimit = 122; // letter 'z'
+        Random random = new Random();
+                
+        switch(type)
+        {   
+            case "UUID":
+                return java.util.UUID.randomUUID().toString();
+            case "PASSWORD": //https://www.baeldung.com/java-random-string       
+                return random.ints(leftLimit, rightLimit + 1)
+                  .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+                  .limit(lenght)
+                  .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                  .toString();
+            case "HARDPASSWORD":    
+                leftLimit = 33; 
+                rightLimit = 126; 
+                return random.ints(leftLimit, rightLimit + 1)
+                  .limit(lenght)
+                  .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                  .toString();                
+        }
+        
+        return null;
     }
        
     public Image get_qr_code(String value)
